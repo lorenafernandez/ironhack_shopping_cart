@@ -18,26 +18,27 @@ class ShoppingCart
 		@products.length
 	end
 
-	def cost_and_discount
+	def total_cost
 		@cost = 0
-		products_prices_pairs = @prices_table.read
-		@products.each do |product|
-		products_prices_pairs.each do |key,value|
-				if key == product.name
-					@discount = product.discount (value)
-					@cost += value.to_i	- @discount
-				end
-			end
-		end
-		total_cost
+		@products_prices_pairs = @prices_table.read
+		per_element_discount
+		multiple_elements_discount
 	end
 
-	def total_cost
+	def per_element_discount
+		@products.each do |product|
+			price = @products_prices_pairs[product.name].to_i
+			discount = product.discount(price)
+			@cost += price - discount
+		end
+	end
+
+	def multiple_elements_discount
 		
 		if item_counter > 5
-			puts final_price = @cost - 0.1 * @cost
+			@cost - 0.1 * @cost
 		else
-			puts final_price = @cost
+			@cost
 		end
 	end
 
@@ -47,29 +48,28 @@ class Product
 	attr_accessor :name
 	def initialize(name)
 		@name = name
-		@discount = 0
 	end
 	def discount(price)
-		@discount = 0
+		0
 	end
 end
 
 class Fruit < Product
 	def discount(price)
 		if Date.today.wday == 0 || Date.today.wday == 6
-			@discount = 0.1 * price.to_i
+			0.1 * price
 		else
-			@discount = 0
+			0
 		end
 	end
 end
 
 class Housewares < Product
 	def discount(price)
-		if price.to_i > 100
-			@discount = 0.05 * price.to_i
+		if price > 100
+			0.05 * price
 		else
-			@discount = 0
+			0
 		end
 	end
 end
@@ -101,6 +101,5 @@ cart.add(vacuum_cleaner)
 cart.add(rice)
 cart.add(anchovies)
 
-
-cart.cost_and_discount 
+puts cart.total_cost
 
