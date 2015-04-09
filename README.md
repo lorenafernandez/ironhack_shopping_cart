@@ -1,4 +1,4 @@
-Pair programming Shopping cart by @marianmartinez @lorenafernandez
+Pair programming Shopping cart by [@marianmartinez](https://github.com/marianmartinez) and [@lorenafernandez](https://github.com/lorenafernandez)
 
 We are building a shopping cart for our new awesome website. Excepting that we have no website yet everything is in place and ready for our work.
 
