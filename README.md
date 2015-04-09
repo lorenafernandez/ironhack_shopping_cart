@@ -1,4 +1,4 @@
-Shopping cart
+Pair programming Shopping cart by @marianmartinez @lorenafernandez
 
 We are building a shopping cart for our new awesome website. Excepting that we have no website yet everything is in place and ready for our work.
 
