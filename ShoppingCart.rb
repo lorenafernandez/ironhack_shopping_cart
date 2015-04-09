@@ -16,7 +16,6 @@ class ShoppingCart
 	def total_cost
 		cost = 0
 		products_prices_pairs = @prices_table.read
-
 		@products.each do |product|
 			products_prices_pairs.each do |key,value|
 				if key == product
@@ -29,11 +28,15 @@ class ShoppingCart
 
 end
 
-class Fruit 
+class Product 
 	attr_accessor :name
 	def initialize(name)
 		@name = name
+		@discount = 0
 	end
+end
+
+class Fruit < Product
 
 end
 
@@ -48,6 +51,10 @@ class FileReader
 		end
 		return products_hash
 	end
+end
+
+class Discount
+
 end
 
 cart = ShoppingCart.new
